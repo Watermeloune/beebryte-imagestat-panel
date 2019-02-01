@@ -6,15 +6,25 @@ import './css/style.css'
 
 class TemplatePanel extends MetricsPanelCtrl {
   static templateUrl = "partials/module.html";
-  value: any;
+
+  isAnimation: null;
+
+  categories: string[];
   panelDefaults = {
     fontSize: null,
     bgColor: null
   };
 
   constructor($scope, $injector) {
-    super($scope, $injector);
 
+
+    this.categories = [
+      "./img/image-list/tree.png",
+      "./img/image-list/co2.png"
+    ];
+
+
+    super($scope, $injector);
     _.defaultsDeep(this.panel, this.panelDefaults);
 
     this.events.on('data-received', this.onDataReceived.bind(this));
@@ -32,7 +42,7 @@ class TemplatePanel extends MetricsPanelCtrl {
   }
 
   onRender() {
-
+    console.log(this.categories)
   }
 }
 

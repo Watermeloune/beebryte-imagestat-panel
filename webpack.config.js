@@ -32,7 +32,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'plugin.json', to: '.' },
       { from: 'partials/*', to: '.' },
-      { from: 'img/*', to: '.' },
+      { from: 'img/**', to: '.' },
       { from: 'css/*', to: '.' },
     ]),
   ],
