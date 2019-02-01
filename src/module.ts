@@ -1,6 +1,7 @@
 import { PanelCtrl , MetricsPanelCtrl} from 'grafana/app/plugins/sdk'
 import _ from 'lodash';
 import './css/style.css'
+import imageList from './image-list';
 
 
 
@@ -9,7 +10,7 @@ class TemplatePanel extends MetricsPanelCtrl {
 
   isAnimation: null;
 
-  categories: string[];
+  imageListDir: string;
   panelDefaults = {
     fontSize: null,
     bgColor: null
@@ -17,11 +18,7 @@ class TemplatePanel extends MetricsPanelCtrl {
 
   constructor($scope, $injector) {
 
-
-    this.categories = [
-      "./img/image-list/tree.png",
-      "./img/image-list/co2.png"
-    ];
+    this.imageListDir = "./img/image-list/";
 
 
     super($scope, $injector);
@@ -42,7 +39,7 @@ class TemplatePanel extends MetricsPanelCtrl {
   }
 
   onRender() {
-    console.log(this.categories)
+    console.log(imageList)
   }
 }
 
