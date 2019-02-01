@@ -1,7 +1,7 @@
 {
-  "name": "template-panel",
+  "name": "image-stat",
   "version": "1.0.0",
-  "description": "template panel for grafana",
+  "description": "Display an information based on an image",
   "main": "index.js",
   "scripts": {
     "dev": "./node_modules/.bin/webpack --mode development",

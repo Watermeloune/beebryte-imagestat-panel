@@ -2,6 +2,6 @@ template panel
 
 **installation**
 
-git clone https://github.com/Watermeloune/grafana-panel-template.git
+git clone https://github.com/Watermeloune/beebryte-imagestat-panel.git
 yarn install --pure-lockfile
 yarn watch / yarn dev

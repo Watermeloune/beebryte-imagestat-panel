@@ -1,17 +1,17 @@
 {
 	"type": "panel",
-	"name": "template-panel",
-	"id": "beebryte-template-panel",
+	"name": "Image Stat",
+	"id": "beebryte-imagestat-panel",
 
 	"info": {
-		"description": "template for panel development on grafana",
+		"description": "show an information based on an image",
 		"author": {
 			"name": "Beebryte",
 			"url": "https://beebryte.com"
 		},
-		"keywords": ["template", "panel"],
+		"keywords": ["image", "stat"],
 		"version": "1.0.0",
-		"updated": "2019-01-31"
+		"updated": "2019-02-01"
 	},
 
 	"dependencies": {
