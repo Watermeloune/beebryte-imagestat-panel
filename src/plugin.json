@@ -1,0 +1,23 @@
+{
+	"type": "panel",
+	"name": "template-panel",
+	"id": "beebryte-template-panel",
+
+	"info": {
+		"description": "template for panel development on grafana",
+		"author": {
+			"name": "Beebryte",
+			"url": "https://beebryte.com"
+		},
+		"keywords": ["template", "panel"],
+		"version": "1.0.0",
+		"updated": "2019-01-31"
+	},
+
+	"dependencies": {
+		"grafanaVersion": "5.x.x",
+		"plugins": []
+	}
+
+
+}
