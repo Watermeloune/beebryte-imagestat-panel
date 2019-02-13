@@ -3,21 +3,30 @@ import _ from 'lodash';
 import './css/style.css'
 import imageList from './image-list';
 
-
+/*
+  #ffda44
+  #ffc43b
+  #ffc212
+  #ff7e25
+  #ff5023
+  #ff4a39
+*/
 
 class TemplatePanel extends MetricsPanelCtrl {
   static templateUrl = "partials/module.html";
 
   isAnimation: null;
-
+  image: any;
+  imageUrl: string;
   imageListDir: string;
   panelDefaults = {
+
     fontSize: null,
     bgColor: null
   };
 
   constructor($scope, $injector) {
-
+    this.imageUrl =  imageList[0];
     this.imageListDir = "./img/image-list/";
 
 
@@ -36,10 +45,13 @@ class TemplatePanel extends MetricsPanelCtrl {
   onDataReceived(dataList) {
     this.value = dataList[0].datapoints[0][0].toFixed(2);
     this.render();
+
+
   }
 
   onRender() {
-    console.log(imageList)
+    this.image = this.imageListDir + this.imageUrl;
+    console.log(this.image);
   }
 }
 
