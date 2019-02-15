@@ -1,36 +1,43 @@
 import { PanelCtrl , MetricsPanelCtrl} from 'grafana/app/plugins/sdk'
 import _ from 'lodash';
 import './css/style.css'
-import imageList from './image-list';
 
+
+
+const imageList: string[] = [
+  "tree.png",
+  "co2.png"
+];
 /*
   #ffda44
   #ffc43b
   #ffc212
   #ff7e25
   #ff5023
-  #ff4a39
+  #ff4a39po
 */
 
-class TemplatePanel extends MetricsPanelCtrl {
+class ImageStatCtrl extends MetricsPanelCtrl {
   static templateUrl = "partials/module.html";
 
+  value: number;
   isAnimation: null;
   image: any;
   imageUrl: string;
   imageListDir: string;
   panelDefaults = {
-
+    title: "Default Title",
     fontSize: null,
     bgColor: null
   };
 
   constructor($scope, $injector) {
-    this.imageUrl =  imageList[0];
-    this.imageListDir = "./img/image-list/";
-
 
     super($scope, $injector);
+
+    this.imageUrl =  imageList[0];
+    this.imageListDir = "./img";
+
     _.defaultsDeep(this.panel, this.panelDefaults);
 
     this.events.on('data-received', this.onDataReceived.bind(this));
@@ -39,20 +46,20 @@ class TemplatePanel extends MetricsPanelCtrl {
   }
 
   onInitEditMode() {
-    this.addEditorTab('Options', 'public/plugins/beebryte-template-panel/partials/editor.html');
+    this.addEditorTab('Options', 'public/plugins/beebryte-imagestat-panel/partials/editor.html');
   }
 
   onDataReceived(dataList) {
-    this.value = dataList[0].datapoints[0][0].toFixed(2);
+    this.value = dataList[0].datapoints[0][0].toFixed(0);
     this.render();
 
 
   }
 
   onRender() {
-    this.image = this.imageListDir + this.imageUrl;
-    console.log(this.image);
+    this.image = "https://pbs.twimg.com/profile_images/981286460602179584/_dn_Y8P4_400x400.jpg";
+    
   }
 }
 
-export{TemplatePanel as PanelCtrl};
+export{ImageStatCtrl as PanelCtrl};

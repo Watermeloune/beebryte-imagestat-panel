@@ -18,6 +18,8 @@ module.exports = {
     libraryTarget: 'amd',
   },
   externals: [
+    'lodash',
+    'moment',
     function (context, request, callback) {
       var prefix = 'grafana/';
       if (request.indexOf(prefix) === 0) {
@@ -66,7 +68,17 @@ module.exports = {
             },
           },
         ],
-      },
+      },/*
+      {
+        test:  /\.(png|jp(e*)g|svg)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8000,
+            name: 'img/[hash]-[name].[ext]'
+          }
+        }]
+      }*/
     ],
   },
 

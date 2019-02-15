@@ -1,4 +1,35 @@
-.test {
+.imageStat-title {
   color: red;
+  font-size: 2vh;
   text-align: center;
+
+}
+
+.imageDisplayed {
+  height: 80%;
+  overflow: auto;
+  float: left;
+}
+
+.imageStat-panel {
+  height: 100%;
+}
+
+.imageStat-content {
+  width: 80%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+
+
+}
+
+.imageStat-stat {
+  font-size: 4vh;
+  height: 100%;
+}
+
+.imageStat-stat span{
+  margin-top: auto;
 }
