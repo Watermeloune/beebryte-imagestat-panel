@@ -25,10 +25,20 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   image: any;
   imageUrl: string;
   imageListDir: string;
+
   panelDefaults = {
     title: "Default Title",
     fontSize: null,
-    bgColor: null
+    bgColor: null,
+    titleSettings: {
+      text: "Sample Text",
+      fontSize: "20px",
+      fontColor: null
+    },
+    statSettings: {
+      fontSize: "20px",
+      fontColor: null,
+    }
   };
 
   constructor($scope, $injector) {
@@ -58,7 +68,23 @@ class ImageStatCtrl extends MetricsPanelCtrl {
 
   onRender() {
     this.image = "https://pbs.twimg.com/profile_images/981286460602179584/_dn_Y8P4_400x400.jpg";
-    
+
+  }
+
+  link(scope, elem) {
+    this.events.on('render', () => {
+      const $titleContainer = elem.find('.imageStat-title');
+      const $statContainer = elem.find('.imageStat-stat');
+
+      $titleContainer.css('font-size', this.panel.titleSettings.fontSize);
+      $titleContainer.css('color', this.panel.titleSettings.fontColor);
+
+      $statContainer.css('fontSize', this.panel.statSettings.fontSize);
+      $statContainer.css('color', this.panel.statSettings.fontColor);
+
+      console.log("========FONT SIZE========");
+      console.log(this.panel.titleSettings.fontSize);
+    });
   }
 }
 

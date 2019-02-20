@@ -1,25 +1,22 @@
 .imageStat-title {
-  color: red;
-  font-size: 2vh;
   text-align: center;
 
 }
 
 .imageDisplayed {
   height: 80%;
-  overflow: auto;
-  float: left;
+  display: inline-block;
 }
 
 .imageStat-panel {
   height: 100%;
+  overflow: hidden;
 }
 
 .imageStat-content {
+  margin-bottom: 3%;
   width: 80%;
   height: 100%;
-  margin-left: auto;
-  margin-right: auto;
   align-content: center;
 
 
@@ -28,6 +25,7 @@
 .imageStat-stat {
   font-size: 4vh;
   height: 100%;
+  display: inline-block;
 }
 
 .imageStat-stat span{
