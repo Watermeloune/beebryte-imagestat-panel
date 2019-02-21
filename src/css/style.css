@@ -1,33 +1,32 @@
-.imageStat-title {
-  text-align: center;
-
-}
-
-.imageDisplayed {
-  height: 80%;
-  display: inline-block;
-}
 
 .imageStat-panel {
   height: 100%;
   overflow: hidden;
 }
 
-.imageStat-content {
-  margin-bottom: 3%;
-  width: 80%;
-  height: 100%;
-  align-content: center;
-
+.imageStat-title {
+  margin-top: 3%;
+  text-align: center;
 
 }
 
-.imageStat-stat {
-  font-size: 4vh;
-  height: 100%;
+.imageStat-content {
+  width: 80%;
+  height: 90%;
+  justify-content: space-around;
+}
+
+.imageDisplayed {
+  margin-left: 20%;
+  height: 80%;
   display: inline-block;
 }
 
-.imageStat-stat span{
-  margin-top: auto;
+.imageDisplayed img{
+  height: 80%;
+}
+
+.imageStat-stat {
+  display: inline-block;
+  margin-left: 10%;
 }

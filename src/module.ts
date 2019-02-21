@@ -2,11 +2,13 @@ import { PanelCtrl , MetricsPanelCtrl} from 'grafana/app/plugins/sdk'
 import _ from 'lodash';
 import './css/style.css'
 
+const tree = require('./img/tree.png');
+
 
 
 const imageList: string[] = [
-  "tree.png",
-  "co2.png"
+  "https://image.noelshack.com/fichiers/2019/08/4/1550767040-tree.png",
+  "https://image.noelshack.com/fichiers/2019/08/4/1550767040-co2.png"
 ];
 /*
   #ffda44
@@ -28,23 +30,25 @@ class ImageStatCtrl extends MetricsPanelCtrl {
 
   panelDefaults = {
     title: "Default Title",
-    fontSize: null,
     bgColor: null,
     titleSettings: {
       text: "Sample Text",
       fontSize: "20px",
-      fontColor: null
+      fontColor: null,
+      fontWeight: 400
     },
     statSettings: {
       fontSize: "20px",
       fontColor: null,
+      fontWeight: 400
     }
   };
 
   constructor($scope, $injector) {
 
     super($scope, $injector);
-
+    //this.image = "https://pbs.twimg.com/profile_images/981286460602179584/_dn_Y8P4_400x400.jpg";
+    this.image = tree;
     this.imageUrl =  imageList[0];
     this.imageListDir = "./img";
 
@@ -67,7 +71,8 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   }
 
   onRender() {
-    this.image = "https://pbs.twimg.com/profile_images/981286460602179584/_dn_Y8P4_400x400.jpg";
+
+    console.log(tree);
 
   }
 
@@ -78,9 +83,11 @@ class ImageStatCtrl extends MetricsPanelCtrl {
 
       $titleContainer.css('font-size', this.panel.titleSettings.fontSize);
       $titleContainer.css('color', this.panel.titleSettings.fontColor);
+      $titleContainer.css('font-weight', this.panel.titleSettings.fontWeight);
 
       $statContainer.css('fontSize', this.panel.statSettings.fontSize);
       $statContainer.css('color', this.panel.statSettings.fontColor);
+      $statContainer.css('font-weight', this.panel.statSettings.fontWeight);
 
       console.log("========FONT SIZE========");
       console.log(this.panel.titleSettings.fontSize);
