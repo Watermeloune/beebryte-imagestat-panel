@@ -2,7 +2,6 @@ import { PanelCtrl , MetricsPanelCtrl} from 'grafana/app/plugins/sdk'
 import _ from 'lodash';
 import './css/style.css'
 
-const tree = require('./img/tree.png');
 
 const imageUrls =  {
   tree: "https://image.noelshack.com/fichiers/2019/08/4/1550767040-tree.png",
