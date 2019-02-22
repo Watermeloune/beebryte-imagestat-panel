@@ -8,7 +8,7 @@
 
   <div class="gf-form">
     <label class="gf-form-label width-12">Title</label>
-    <input type="text" class="gf-form-input max-width-12" ng-model="ctrl.panel.title" ng-change="ctrl.render()" ng-model-onblur>
+    <input type="text" class="gf-form-input max-width-12" ng-model="ctrl.panel.titleSettings.text" ng-change="ctrl.render()" ng-model-onblur>
   </div>
 
   <div class="gf-form">
@@ -40,5 +40,20 @@
     <label class="gf-form-label width-12">Font weight</label>
     <input class="input-small gf-form-input width-12" ng-model="ctrl.panel.statSettings.fontWeight" ng-change="ctrl.render()" ng-model-onblur/>
   </div>
+
+  <div class="gf-form">
+    <label class="gf-form-label width-12">suffix</label>
+    <input class="input-small gf-form-input width-12" ng-model="ctrl.panel.statSettings.suffix" ng-change="ctrl.render()" ng-model-onblur/>
+  </div>
+
+  <div class="gf-form">
+			<label class="gf-form-label width-12">Font Weight</label>
+			<span class="gf-form-select-wrapper max-width-9">
+				<select class="input-small gf-form-input"
+        ng-model="ctrl.panel.imageSettings.image"
+        ng-options="t for t in ['tree', 'co2']"
+        ng-change="ctrl.render()"></select>
+			</span>
+</div>
 
 </div>

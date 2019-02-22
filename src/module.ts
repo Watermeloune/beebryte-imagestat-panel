@@ -4,12 +4,11 @@ import './css/style.css'
 
 const tree = require('./img/tree.png');
 
+const imageUrls =  {
+  tree: "https://image.noelshack.com/fichiers/2019/08/4/1550767040-tree.png",
+  co2: "https://image.noelshack.com/fichiers/2019/08/4/1550767040-co2.png"
+};
 
-
-const imageList: string[] = [
-  "https://image.noelshack.com/fichiers/2019/08/4/1550767040-tree.png",
-  "https://image.noelshack.com/fichiers/2019/08/4/1550767040-co2.png"
-];
 /*
   #ffda44
   #ffc43b
@@ -22,11 +21,10 @@ const imageList: string[] = [
 class ImageStatCtrl extends MetricsPanelCtrl {
   static templateUrl = "partials/module.html";
 
+
+
   value: number;
   isAnimation: null;
-  image: any;
-  imageUrl: string;
-  imageListDir: string;
 
   panelDefaults = {
     title: "Default Title",
@@ -40,17 +38,19 @@ class ImageStatCtrl extends MetricsPanelCtrl {
     statSettings: {
       fontSize: "20px",
       fontColor: null,
-      fontWeight: 400
+      fontWeight: 400,
+      suffix: "%",
+    },
+    imageSettings: {
+      imageUrl: null,
+      image: null
+
     }
   };
 
   constructor($scope, $injector) {
 
     super($scope, $injector);
-    //this.image = "https://pbs.twimg.com/profile_images/981286460602179584/_dn_Y8P4_400x400.jpg";
-    this.image = tree;
-    this.imageUrl =  imageList[0];
-    this.imageListDir = "./img";
 
     _.defaultsDeep(this.panel, this.panelDefaults);
 
@@ -71,8 +71,8 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   }
 
   onRender() {
-
-    console.log(tree);
+    this.panel.imageSettings.imageUrl = imageUrls[this.panel.imageSettings.image];
+    console.log(this.panel.imageSettings.imageList) ;
 
   }
 
@@ -89,8 +89,6 @@ class ImageStatCtrl extends MetricsPanelCtrl {
       $statContainer.css('color', this.panel.statSettings.fontColor);
       $statContainer.css('font-weight', this.panel.statSettings.fontWeight);
 
-      console.log("========FONT SIZE========");
-      console.log(this.panel.titleSettings.fontSize);
     });
   }
 }
