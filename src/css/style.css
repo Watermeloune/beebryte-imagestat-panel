@@ -5,29 +5,38 @@
 }
 
 .imageStat-title {
-  margin-top: 3%;
-  margin-bottom: 3%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  height: 20%;
   text-align: center;
 
 }
 
 .imageStat-content {
+  padding-top: 2.5%;
   width: 80%;
-  height: 90%;
+  height: 80%;
   justify-content: space-around;
   margin: auto;
 }
 
 .imageDisplayed {
+  width: 50%;
   height: 80%;
   display: inline-block;
 }
 
 .imageDisplayed img{
-  height: 80%;
+  height: 100%;
+  float:right;
 }
 
 .imageStat-stat {
   display: inline-block;
-  margin-left: 10%;
+  padding-left: 5%;
+  height: 50%;
+}
+
+.imageStat-stat span {
+  float: left;
 }
