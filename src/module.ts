@@ -62,16 +62,19 @@ class ImageStatCtrl extends MetricsPanelCtrl {
     this.addEditorTab('Options', 'public/plugins/beebryte-imagestat-panel/partials/editor.html');
   }
 
-  onDataReceived(dataList) {
-    this.value = dataList[0].datapoints[0][0].toFixed(0);
+  onDataReceived(panelData) {
+    this.value = 1; //panelData[0].datapoints[0].toFixed(0);//dataList[0].datapoints[0][0].toFixed(0);
+    console.log("============DATA RECIEVED============");
+    console.log(panelData);
+    console.log("=====================================");
     this.render();
 
 
   }
 
-  onRender() {
+  onRender(dataList) {
     this.panel.imageSettings.imageUrl = imageUrls[this.panel.imageSettings.image];
-    console.log(this.panel.imageSettings.imageList) ;
+    
 
   }
 
