@@ -63,10 +63,8 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   }
 
   onDataReceived(panelData) {
-    this.value = 1; //panelData[0].datapoints[0].toFixed(0);//dataList[0].datapoints[0][0].toFixed(0);
-    console.log("============DATA RECIEVED============");
-    console.log(panelData);
-    console.log("=====================================");
+    this.value = panelData[0].datapoints[0][0].toFixed(0);
+
     this.render();
 
 
