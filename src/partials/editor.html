@@ -42,8 +42,18 @@
   </div>
 
   <div class="gf-form">
-    <label class="gf-form-label width-12">suffix</label>
+    <label class="gf-form-label width-12">Suffix</label>
     <input class="input-small gf-form-input width-12" ng-model="ctrl.panel.statSettings.suffix" ng-change="ctrl.render()" ng-model-onblur/>
+  </div>
+
+  <div class="gf-form">
+    <label class="gf-form-label width-12">Divider</label>
+    <input class="input-small gf-form-input width-12" ng-model="ctrl.panel.statSettings.divider" ng-change="ctrl.render()" ng-model-onblur/>
+  </div>
+
+  <div class="gf-form">
+    <label class="gf-form-label width-12">How many decimals</label>
+    <input class="input-small gf-form-input width-12" ng-model="ctrl.panel.statSettings.decimalNumber" ng-change="ctrl.render()" ng-model-onblur/>
   </div>
 
   <div class="gf-form">
@@ -54,6 +64,6 @@
         ng-options="t for t in ['tree', 'co2']"
         ng-change="ctrl.render()"></select>
 			</span>
-</div>
+  </div>
 
 </div>

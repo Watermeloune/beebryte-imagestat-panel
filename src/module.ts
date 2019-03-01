@@ -21,7 +21,7 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   static templateUrl = "partials/module.html";
 
 
-
+  rawData: number;
   value: number;
   isAnimation: null;
 
@@ -35,6 +35,8 @@ class ImageStatCtrl extends MetricsPanelCtrl {
       fontWeight: 400
     },
     statSettings: {
+      decimalNumber: "2",
+      divider: "1",
       fontSize: "20px",
       fontColor: null,
       fontWeight: 400,
@@ -63,17 +65,17 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   }
 
   onDataReceived(panelData) {
-    this.value = panelData[0].datapoints[0][0].toFixed(0);
-
+    
+    this.rawData = panelData[0].datapoints[0][0].toFixed(0) ;
     this.render();
 
 
   }
 
-  onRender(dataList) {
+  onRender() {
     this.panel.imageSettings.imageUrl = imageUrls[this.panel.imageSettings.image];
-    
-
+    this.value = (this.rawData / parseInt(this.panel.statSettings.divider)).toFixed(parseInt(this.panel.statSettings.decimalNumber));
+    console.log(this.panel.statSettings.decimalNumber);
   }
 
   link(scope, elem) {
