@@ -41,6 +41,7 @@ class ImageStatCtrl extends MetricsPanelCtrl {
       fontColor: null,
       fontWeight: 400,
       suffix: "%",
+      inferiorToZero : true,
     },
     imageSettings: {
       imageUrl: null,
@@ -74,7 +75,10 @@ class ImageStatCtrl extends MetricsPanelCtrl {
 
   onRender() {
     this.panel.imageSettings.imageUrl = imageUrls[this.panel.imageSettings.image];
-    this.value = (this.rawData / parseInt(this.panel.statSettings.divider)).toFixed(parseInt(this.panel.statSettings.decimalNumber));
+    this.value = -60;//(this.rawData / parseInt(this.panel.statSettings.divider)).toFixed(parseInt(this.panel.statSettings.decimalNumber));
+    if (this.value < 0 && !this.panel.statSettings.inferiorToZero) {
+      this.value = 0;
+    }
     console.log(this.panel.statSettings.decimalNumber);
   }
 

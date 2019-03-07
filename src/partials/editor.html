@@ -26,6 +26,7 @@
 <div class="section gf-form-group">
   <h5 class="section-header"> Stat Options </h5>
 
+  <gf-form-switch class="gf-form" label="Negative" label-class="width-6" checked="ctrl.panel.statSettings.inferiorToZero" on-change="ctrl.render()"></gf-form-switch>
   <div class="gf-form">
     <label class="gf-form-label width-12">Font color</label>
     <spectrum-picker class="gf-form-input width-10" ng-model="ctrl.panel.statSettings.fontColor" ng-change="ctrl.render()"> </spectrum-picker>
