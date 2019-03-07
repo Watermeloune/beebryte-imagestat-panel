@@ -2,6 +2,43 @@
   <h5 class="section-header"> Title Options </h5>
 
   <div class="gf-form">
+    <label class="gf-form-label width-12">Mode</label>
+    <span class="gf-form-select-wrapper max-width-9">
+      <select class="input-small gf-form-input"
+      ng-model="ctrl.panel.mode"
+      ng-options="t for t in ['ratio', 'comparison','value']"
+      ng-change="ctrl.render()"></select>
+    </span>
+  </div>
+
+  <div class="gf-form" ng-if="ctrl.panel.mode == 'value' || ctrl.panel.mode == 'comparison'">
+    <label class="gf-form-label width-12">Image</label>
+    <span class="gf-form-select-wrapper max-width-9">
+      <select class="input-small gf-form-input"
+      ng-model="ctrl.panel.imageSettings.image"
+      ng-options="t for t in ['tree', 'co2']"
+      ng-change="ctrl.render()"></select>
+    </span>
+  </div>
+
+  <div ng-if="ctrl.panel.mode == 'ratio'">
+    <div class="gf-form">
+      <label class="gf-form-label width-12">Up arrow color</label>
+      <spectrum-picker class="gf-form-input width-10" ng-model="ctrl.panel.imageSettings.upColor" ng-change="ctrl.render()"> </spectrum-picker>
+    </div>
+    
+    <div class="gf-form">
+      <label class="gf-form-label width-12">Down arrow color</label>
+      <spectrum-picker class="gf-form-input width-10" ng-model="ctrl.panel.imageSettings.downColor" ng-change="ctrl.render()"> </spectrum-picker>
+    </div>    
+  </div>
+
+</div>
+
+<div class="section gf-form-group">
+  <h5 class="section-header"> Title Options </h5>
+
+  <div class="gf-form">
     <label class="gf-form-label width-12">Font color</label>
       <spectrum-picker class="gf-form-input width-10" ng-model="ctrl.panel.titleSettings.fontColor" ng-change="ctrl.render()"> </spectrum-picker>
   </div>
@@ -57,14 +94,6 @@
     <input class="input-small gf-form-input width-12" ng-model="ctrl.panel.statSettings.decimalNumber" ng-change="ctrl.render()" ng-model-onblur/>
   </div>
 
-  <div class="gf-form">
-			<label class="gf-form-label width-12">Image</label>
-			<span class="gf-form-select-wrapper max-width-9">
-				<select class="input-small gf-form-input"
-        ng-model="ctrl.panel.imageSettings.image"
-        ng-options="t for t in ['tree', 'co2']"
-        ng-change="ctrl.render()"></select>
-			</span>
-  </div>
+  
 
 </div>

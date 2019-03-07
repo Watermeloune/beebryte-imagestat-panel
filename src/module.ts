@@ -1,11 +1,14 @@
 import { PanelCtrl , MetricsPanelCtrl} from 'grafana/app/plugins/sdk'
 import _ from 'lodash';
 import './css/style.css'
+import { notStrictEqual } from 'assert';
 
 
 const imageUrls =  {
   tree: "https://image.noelshack.com/fichiers/2019/08/4/1550767040-tree.png",
-  co2: "https://image.noelshack.com/fichiers/2019/08/4/1550767040-co2.png"
+  co2: "https://image.noelshack.com/fichiers/2019/08/4/1550767040-co2.png",
+  down: "https://image.noelshack.com/fichiers/2019/09/5/1551436070-downarrow.png",
+  up: "https://image.noelshack.com/fichiers/2019/09/5/1551436070-uparrow.png"
 };
 
 /*
@@ -21,11 +24,16 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   static templateUrl = "partials/module.html";
 
 
-  rawData: number;
+  rawData: any;
   value: number;
-  isAnimation: null;
+
+  //If comparison or ratio: today is the value for today ---- notToday is the value you wanna compare to
+  today: number;
+  notToday: number;
+
 
   panelDefaults = {
+    mode: "value",
     title: "Default Title",
     bgColor: null,
     titleSettings: {
@@ -45,9 +53,10 @@ class ImageStatCtrl extends MetricsPanelCtrl {
     },
     imageSettings: {
       imageUrl: null,
-      image: null
-
-    }
+      image: null,
+      upColor: "green",
+      downColor: "red",
+    },
   };
 
   constructor($scope, $injector) {
@@ -67,25 +76,49 @@ class ImageStatCtrl extends MetricsPanelCtrl {
 
   onDataReceived(panelData) {
     
-    this.rawData = panelData[0].datapoints[0][0].toFixed(0) ;
-    this.render();
-
-
+    this.rawData = panelData[0];
+    this.render()
   }
 
   onRender() {
-    this.panel.imageSettings.imageUrl = imageUrls[this.panel.imageSettings.image];
-    this.value = -60;//(this.rawData / parseInt(this.panel.statSettings.divider)).toFixed(parseInt(this.panel.statSettings.decimalNumber));
+
     if (this.value < 0 && !this.panel.statSettings.inferiorToZero) {
       this.value = 0;
     }
-    console.log(this.panel.statSettings.decimalNumber);
+
+    if (this.panel.mode === "ratio"){
+      this.notToday = this.rawData.datapoints[0][0].toFixed(0);
+      this.today = this.rawData.datapoints[this.rawData.datapoints.length-1][0].toFixed(0);
+      this.value = (100 - (this.today / this.notToday * 100)).toFixed(1);
+      if (this.today < this.notToday) {
+        this.value = this.value * -1;
+      }
+      if (this.value >= 0) {
+        this.panel.imageSettings.imageUrl = imageUrls["up"];
+      } else {
+        this.panel.imageSettings.imageUrl = imageUrls["down"]
+      }
+      
+    } else if (this.panel.mode === "comparison") {
+      this.notToday = this.rawData.datapoints[0][0].toFixed(0);
+      this.today = this.rawData.datapoints[this.rawData.datapoints.length-1][0].toFixed(0);
+      this.value = this.notToday - this.today;
+
+      this.panel.imageSettings.imageUrl = imageUrls[this.panel.imageSettings.image];
+    } else {
+      this.value = this.rawData.datapoints[this.rawData.datapoints.length-1][0].toFixed(0);
+      
+      this.panel.imageSettings.imageUrl = imageUrls[this.panel.imageSettings.image];
+    }
+    
+
   }
 
   link(scope, elem) {
     this.events.on('render', () => {
       const $titleContainer = elem.find('.imageStat-title');
       const $statContainer = elem.find('.imageStat-stat');
+      const $image = elem.find('.imageDisplayed img');
 
       $titleContainer.css('font-size', this.panel.titleSettings.fontSize);
       $titleContainer.css('color', this.panel.titleSettings.fontColor);
@@ -94,6 +127,18 @@ class ImageStatCtrl extends MetricsPanelCtrl {
       $statContainer.css('fontSize', this.panel.statSettings.fontSize);
       $statContainer.css('color', this.panel.statSettings.fontColor);
       $statContainer.css('font-weight', this.panel.statSettings.fontWeight);
+
+      if (this.panel.mode === "ratio") {
+        
+        if (this.value >= 0) {
+          $image.css('background', this.panel.imageSettings.upColor);
+        } else {
+          $image.css('background', this.panel.imageSettings.downColor);
+        }
+      } else {
+        $image.css('background', "");
+      }
+  
 
     });
   }
