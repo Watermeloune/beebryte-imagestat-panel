@@ -24,7 +24,7 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   static templateUrl = "partials/module.html";
 
 
-  rawData: any;
+  rawData: number[];
   value: number;
 
   //If comparison or ratio: today is the value for today ---- notToday is the value you wanna compare to
@@ -77,6 +77,7 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   onDataReceived(panelData) {
     
     this.rawData = panelData[0];
+    console.log(this.rawData);
     this.render()
   }
 
@@ -87,7 +88,7 @@ class ImageStatCtrl extends MetricsPanelCtrl {
     }
 
     if (this.panel.mode === "ratio"){
-      this.notToday = this.rawData.datapoints[0][0].toFixed(0);
+      this.notToday = this.rawData.datapoints[this.rawData.datapoints.length-2][0].toFixed(0);
       this.today = this.rawData.datapoints[this.rawData.datapoints.length-1][0].toFixed(0);
       this.value = (100 - (this.today / this.notToday * 100)).toFixed(1);
       if (this.today < this.notToday) {
@@ -100,7 +101,7 @@ class ImageStatCtrl extends MetricsPanelCtrl {
       }
       
     } else if (this.panel.mode === "comparison") {
-      this.notToday = this.rawData.datapoints[0][0].toFixed(0);
+      this.notToday = this.rawData.datapoints[this.rawData.datapoints.length-2][0].toFixed(0);
       this.today = this.rawData.datapoints[this.rawData.datapoints.length-1][0].toFixed(0);
       this.value = this.notToday - this.today;
 
