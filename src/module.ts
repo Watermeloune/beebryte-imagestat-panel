@@ -7,13 +7,13 @@ import img from './img/beebryte_icon.png';
 
 var context = require.context('./img', true, /.*/);
 var files={};
-let imageList : string[] = []
+let imagesList : string[] = []
 context.keys().forEach((filename)=>{
-  imageList.push(filename.substring(2, filename.length-4));
+  imagesList.push(filename.substring(2, filename.length-4));
   files[filename.substring(2, filename.length-4)] = context(filename);
 });
 console.log(files);
-console.log(imageList);
+console.log(imagesList);
 
 const imageUrls =  {
   tree: "https://image.noelshack.com/fichiers/2019/08/4/1550767040-tree.png",
@@ -40,7 +40,7 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   //If comparison or ratio: today is the value for today ---- notToday is the value you wanna compare to
   today: number;
   notToday: number;
-
+  imageList : string[];
 
   panelDefaults = {
     mode: "value",
@@ -63,7 +63,7 @@ class ImageStatCtrl extends MetricsPanelCtrl {
     },
     imageSettings: {
       imageUrl: null,
-      image: null,
+      image: "beebryte_icon",
       upColor: "green",
       downColor: "red",
     },
@@ -73,6 +73,7 @@ class ImageStatCtrl extends MetricsPanelCtrl {
 
     super($scope, $injector);
 
+    this.imageList = imagesList;
     _.defaultsDeep(this.panel, this.panelDefaults);
 
     this.events.on('data-received', this.onDataReceived.bind(this));
@@ -115,14 +116,12 @@ class ImageStatCtrl extends MetricsPanelCtrl {
       this.today = this.rawData.datapoints[this.rawData.datapoints.length-1][0].toFixed(0);
       this.value = this.notToday - this.today;
 
-      this.panel.imageSettings.imageUrl = imageUrls[this.panel.imageSettings.image];
+      this.panel.imageSettings.imageUrl = files[this.panel.imageSettings.image];
     } else {
       this.value = this.rawData.datapoints[this.rawData.datapoints.length-1][0].toFixed(0);
       
-      this.panel.imageSettings.imageUrl = imageUrls[this.panel.imageSettings.image];
+      this.panel.imageSettings.imageUrl = files[this.panel.imageSettings.image];
     }
-
-    this.panel.imageSettings.imageUrl = files["./truc1.png"];
     
 
   }
