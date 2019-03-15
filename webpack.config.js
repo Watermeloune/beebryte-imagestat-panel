@@ -38,7 +38,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'plugin.json', to: '.' },
       { from: 'partials/*', to: '.' },
-      //{ from: 'img/**', to: '.' },
+      { from: 'img/**', to: '.' },
       { from: 'css/*', to: '.' },
     ]),
   ],
@@ -78,7 +78,6 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            limit: 8000,
             name: 'img/[name].[ext]'
           }
         }]

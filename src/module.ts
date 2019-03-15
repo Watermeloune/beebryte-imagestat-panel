@@ -2,7 +2,18 @@ import { PanelCtrl , MetricsPanelCtrl} from 'grafana/app/plugins/sdk'
 import _ from 'lodash';
 import './css/style.css'
 import { notStrictEqual } from 'assert';
+import img from './img/beebryte_icon.png';
 
+
+var context = require.context('./img', true, /.*/);
+var files={};
+let imageList : string[] = []
+context.keys().forEach((filename)=>{
+  imageList.push(filename.substring(2, filename.length-4));
+  files[filename.substring(2, filename.length-4)] = context(filename);
+});
+console.log(files);
+console.log(imageList);
 
 const imageUrls =  {
   tree: "https://image.noelshack.com/fichiers/2019/08/4/1550767040-tree.png",
@@ -22,7 +33,6 @@ const imageUrls =  {
 
 class ImageStatCtrl extends MetricsPanelCtrl {
   static templateUrl = "partials/module.html";
-
 
   rawData: number[];
   value: number;
@@ -111,6 +121,8 @@ class ImageStatCtrl extends MetricsPanelCtrl {
       
       this.panel.imageSettings.imageUrl = imageUrls[this.panel.imageSettings.image];
     }
+
+    this.panel.imageSettings.imageUrl = files["./truc1.png"];
     
 
   }
@@ -129,6 +141,8 @@ class ImageStatCtrl extends MetricsPanelCtrl {
       $statContainer.css('color', this.panel.statSettings.fontColor);
       $statContainer.css('font-weight', this.panel.statSettings.fontWeight);
 
+      
+
       if (this.panel.mode === "ratio") {
         
         if (this.value >= 0) {
@@ -137,7 +151,7 @@ class ImageStatCtrl extends MetricsPanelCtrl {
           $image.css('background', this.panel.imageSettings.downColor);
         }
       } else {
-        $image.css('background', "");
+        //$image.css("content", "url("+img+")";
       }
   
 
