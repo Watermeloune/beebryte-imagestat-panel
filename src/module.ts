@@ -12,15 +12,7 @@ context.keys().forEach((filename)=>{
   imagesList.push(filename.substring(2, filename.length-4));
   files[filename.substring(2, filename.length-4)] = context(filename);
 });
-console.log(files);
-console.log(imagesList);
 
-const imageUrls =  {
-  tree: "https://image.noelshack.com/fichiers/2019/08/4/1550767040-tree.png",
-  co2: "https://image.noelshack.com/fichiers/2019/08/4/1550767040-co2.png",
-  down: "https://image.noelshack.com/fichiers/2019/09/5/1551436070-downarrow.png",
-  up: "https://image.noelshack.com/fichiers/2019/09/5/1551436070-uparrow.png"
-};
 
 /*
   #ffda44
@@ -88,7 +80,6 @@ class ImageStatCtrl extends MetricsPanelCtrl {
   onDataReceived(panelData) {
     
     this.rawData = panelData[0];
-    console.log(this.rawData);
     this.render()
   }
 
