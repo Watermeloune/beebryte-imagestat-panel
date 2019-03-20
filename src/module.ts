@@ -106,9 +106,9 @@ class ImageStatCtrl extends MetricsPanelCtrl {
         this.value = this.value * -1;
       }
       if (this.value >= 0) {
-        this.panel.imageSettings.imageUrl = imageUrls["up"];
+        this.panel.imageSettings.imageUrl = files["up"];
       } else {
-        this.panel.imageSettings.imageUrl = imageUrls["down"]
+        this.panel.imageSettings.imageUrl = files["down"]
       }
       
     } else if (this.panel.mode === "comparison") {
